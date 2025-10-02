@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  /* Azul oscuro personalizado */
+  .bg-azul-oscuro {
+    background-color: #0b1a2f !important;
+  }
+  .table-azul-oscuro thead {
+    background-color: #0b1a2f !important;
+    color: #cbd5e1;
+  }
+</style>
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-azul-oscuro text-white d-flex justify-content-between align-items-center">
+            <h2 class="mb-0"><i class="fa fa-users"></i> Beneficiarios</h2>
+            <div>
+                <a class="btn btn-secondary me-2" href="{% url 'beneficiarios_create' %}">
+                    <i class="fa fa-plus"></i> Nuevo Beneficiario
+                </a>
+                <a class="btn btn-secondary" href="{% url 'buscar_eliminar_beneficiario' %}">
+                    <i class="fa fa-trash"></i> Eliminar Beneficiario
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle text-center table-azul-oscuro">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">DPI</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Apellido</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for e in estudiantes %}
+                            <tr>
+                                <td>{{ e.id_estudiante }}</td>
+                                <td>{{ e.DPI }}</td>
+                                <td>{{ e.nombre }}</td>
+                                <td>{{ e.apellido }}</td>
+                                <td>{{ e.estado }}</td>
+                                <td>
+                                    <a class="btn btn-sm btn-secondary" href="{% url 'beneficiarios_detail' e.id_estudiante %}">
+                                        <i class="fa fa-eye"></i> Ver
+                                    </a>
+                                    <a class="btn btn-sm btn-secondary" href="{% url 'beneficiarios_edit' e.id_estudiante %}">
+                                        <i class="fa fa-edit"></i> Editar
+                                    </a>
+                                    <a class="btn btn-sm btn-secondary" href="{% url 'eliminar_beneficiario' e.id_estudiante %}">
+                                        <i class="fa fa-trash"></i> Eliminar
+                                    </a>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="6" class="text-muted">No hay beneficiarios registrados</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

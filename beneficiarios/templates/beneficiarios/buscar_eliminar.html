@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>Buscar y eliminar beneficiario</h2>
+
+  <form method="get">
+    <input type="text" name="q" class="form-control" placeholder="Buscar por nombre..." value="{{ query }}">
+    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+  </form>
+
+  {% if resultados %}
+    <h3 class="mt-4">Resultados:</h3>
+    <ul class="list-group">
+      {% for b in resultados %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          {{ b.nombre }} - {{ b.dpi }}
+          {% if b.id %}
+            <a href="{% url 'eliminar_beneficiario' b.id_estudiante %}" class="btn btn-danger btn-sm">Eliminar</a>
+          {% else %}
+            <span class="text-muted">ID no disponible</span>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li class="list-group-item">No se encontraron beneficiarios.</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</div>
+{% endblock %}
+

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Confirmar eliminación</h2>
+  <p>¿Seguro que deseas eliminar al beneficiario <strong>{{ beneficiario.nombre }}</strong>?</p>
+
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Sí, eliminar</button>
+    <a href="{% url 'buscar_eliminar_beneficiario' %}" class="btn btn-secondary">Cancelar</a>
+  </form>
+</div>
+{% endblock %}

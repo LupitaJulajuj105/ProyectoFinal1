@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white">
+            <h2 class="mb-0"><i class="fa fa-graduation-cap"></i> Detalle de la Beca - {{ beca.nombre }}</h2>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-graduation-cap"></i></span>
+                    <input type="text" class="form-control" value="{{ beca.tipo_beca }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-money-bill-wave"></i></span>
+                    <input type="text" class="form-control" value="Q {{ beca.monto }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-star"></i></span>
+                    <input type="text" class="form-control" value="{{ beca.promedio_minimo }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-info-circle"></i></span>
+                    <textarea class="form-control" rows="3" readonly>{{ beca.descripcion }}</textarea>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'becas_list' %}" class="btn btn-secondary">
+                <i class="fa fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

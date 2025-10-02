@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h2 class="mb-0"><i class="fa fa-user"></i> Detalle - {{ estudiante.nombre }} {{ estudiante.apellido }}</h2>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                    <input type="text" class="form-control" value="{{ estudiante.DPI }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input type="email" class="form-control" value="{{ estudiante.correo }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                    <input type="text" class="form-control" value="{{ estudiante.telefono }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-home"></i></span>
+                    <input type="text" class="form-control" value="{{ estudiante.direccion }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-venus-mars"></i></span>
+                    <input type="text" class="form-control" value="{{ estudiante.get_genero_display }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-check-circle"></i></span>
+                    <input type="text" class="form-control" value="{{ estudiante.get_estado_display }}" readonly>
+                </div>
+            </form>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'beneficiarios_list' %}" class="btn btn-secondary">
+                <i class="fa fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

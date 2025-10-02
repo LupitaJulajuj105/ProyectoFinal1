@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-dark text-white">
+            <h2 class="mb-0"><i class="fa fa-file-alt"></i> Detalle de la Solicitud</h2>
+        </div>
+        <div class="card-body">
+            <form>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-hashtag"></i></span>
+                    <input type="text" class="form-control" value="{{ solicitud.id_solicitud }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                    <input type="text" class="form-control" value="{{ solicitud.id_estudiante.nombre }} {{ solicitud.id_estudiante.apellido }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-graduation-cap"></i></span>
+                    <input type="text" class="form-control" value="{{ solicitud.id_beca.nombre }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-info-circle"></i></span>
+                    <input type="text" class="form-control" value="{{ solicitud.estado }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-calendar-alt"></i></span>
+                    <input type="text" class="form-control" value="{{ solicitud.fecha_solicitud }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-comment-dots"></i></span>
+                    <textarea class="form-control" rows="3" readonly>{{ solicitud.observaciones }}</textarea>
+                </div>
+
+            </form>
+        </div>
+        <div class="card-footer text-end">
+            <a href="{% url 'solicitudes_list' %}" class="btn btn-secondary">
+                <i class="fa fa-arrow-left"></i> Volver
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
