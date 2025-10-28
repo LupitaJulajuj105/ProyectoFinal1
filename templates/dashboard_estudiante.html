@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}Estudiante{% endblock %}
+{% block content %}
+<h2>Panel Estudiante</h2>
+<p>Bienvenido, {{ request.session.username }}. Aquí puedes crear solicitudes y ver tu historial.</p>
+<p><a class="btn btn-success" href="/solicitudes/nuevo/">Nueva solicitud</a></p>
+{% endblock %}

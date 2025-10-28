@@ -1,0 +1,4 @@
+:root{--main:#1B5E20;--accent:#2E7D32;}
+.navbar{background:var(--main) !important;}
+.btn-success{background:var(--main);border-color:var(--main);}
+.card { box-shadow: 0 4px 14px rgba(27,94,32,0.08); }

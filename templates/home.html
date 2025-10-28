@@ -1,92 +1,104 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 
-<style>
-  html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    overflow: hidden; 
-  }
+<!-- Carrusel principal (sin cambios) -->
+{% load static %}
 
-  #hero {
-    height: 75vh;
-    width: 75vw;
-    background-color: #f0f0f0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    
-    box-sizing: border-box;
-  }
+<div id="bannerCarousel" class="carousel slide mb-4" data-bs-ride="carousel" data-bs-interval="4000">
+  <div class="carousel-inner">
+   <!-- Imagen 1 -->
+<div class="carousel-item active">
+  <div style="
+    background-image: url('{% static "img/imagen1.png" %}');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    width: 100%;
+  "></div>
+</div>
+<!-- Imagen 2 -->
+<div class="carousel-item">
+  <div style="
+    background-image: url('{% static "img/imagen2.png" %}');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 70vh;
+    width: 100%;
+  "></div>
+</div>
 
-  .content-wrapper {
-    background: rgba(255, 255, 255, 0.85);
-    padding: 3rem 4rem;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    max-width: 900px;
-    width: 100%; 
-
-    animation: zoomInFade 1s ease forwards;
-    opacity: 0;
-    transform: scale(0.95);
-  }
-
-  @keyframes zoomInFade {
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
-
-  h1 {
-    font-weight: 700;
-    text-transform: uppercase;
-    color: #001f3f;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 0.5s;
-    margin-bottom: 0; /
-  }
-
-  p {
-    font-size: 1.25rem;
-    color: #33475b;
-    margin-top: 1rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease forwards;
-    animation-delay: 1.2s;
-  }
-
+    <!-- Imagen 3 -->
+    <div class="carousel-item">
+    <div style="
+       background-image: url('{% static "img/imagen3.png" %}');
+       background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 70vh;
+      width: 100%;
+    "></div>
+    </div>
  
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+  <!-- Controles -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#bannerCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#bannerCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+  </div>
+</div>
 
-  @media (max-width: 576px) {
-    .content-wrapper {
-      padding: 2rem;
-    }
-    h1 {
-      font-size: 2rem;
-    }
-  }
-</style>
 
-<div id="hero">
-  <div class="content-wrapper">
-    <h1>BECAS MUNICIPALES DE GUATEMALA</h1>
-    <p>Impulsando el futuro de los estudiantes con oportunidades reales.</p>
+<!-- Banner informativo centrado (AMARILLO INDIO) -->
+<div class="d-flex align-items-center justify-content-center" 
+     style="background-color: #f2c94c; padding: 3rem 1rem;">
+  <div class="card p-5 shadow-lg text-center" style="max-width: 960px; width: 100%; border-radius: 14px; border: none;">
+    
+    <div class="mb-4">
+      <h2 class="display-6 fw-bold text-dark">Bienvenido a</h2>
+      <h1 class="display-6 fw-bold text-dark">Becas Municipales de Guatemala</h1>
+    </div>
+
+    <p class="text-muted mb-3 fs-5">Sistema de gestión y seguimiento de becas estudiantiles municipales.</p>
+    <p class="mb-4">Accede con tu usuario o regístrate como estudiante para solicitar una beca.</p>
+
+    <div class="d-flex flex-column flex-md-row justify-content-center gap-3 mb-4">
+      <a href="/login/" class="btn btn-dark btn-lg fw-semibold shadow-sm">Ingresar al sistema</a>
+      <button class="btn btn-outline-dark btn-lg" data-bs-toggle="modal" data-bs-target="#infoModal">Ver información</button>
+    </div>
+
+    <div>
+      <img src="{% static 'img/edu.png' %}" alt="educación" class="img-fluid" style="max-width: 320px;">
+    </div>
+
+    <div class="mt-4 text-muted small">
+      © 2025 Becas Municipales de Guatemala – Todos los derechos reservados.
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg">
+      <div class="modal-header bg-warning-subtle">
+        <h5 class="modal-title fw-bold text-dark">Programa de Becas Municipales</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p>El programa está destinado a apoyar a estudiantes en situación de vulnerabilidad, ofreciendo apoyo económico, orientación y seguimiento académico para impulsar su desarrollo.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning text-dark fw-semibold" data-bs-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
   </div>
 </div>
 
 {% endblock %}
-
