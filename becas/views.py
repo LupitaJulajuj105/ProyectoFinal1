@@ -35,3 +35,7 @@ def becas_list(request):
 def becas_detail(request, id):
     beca = get_object_or_404(Beca, id_beca=id)
     return render(request, "becas/detalle.html", {"beca": beca})
+
+def detalles_beca(request):
+    becas = Beca.objects.all()
+    return render(request, "becas/detalleBeca.html", {"becas": becas})

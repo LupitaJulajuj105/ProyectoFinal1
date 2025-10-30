@@ -35,3 +35,7 @@ def solicitudes_list(request):
 def solicitudes_detail(request, id):
     solicitud = get_object_or_404(Solicitud, id_solicitud=id)
     return render(request, "solicitudes/detalle.html", {"solicitud": solicitud})
+
+def detalles_soli(request):
+    solicitudes = Solicitud.objects.all()
+    return render(request, "solicitudes/SoliDetalle.html", {"solicitudes": solicitudes})
