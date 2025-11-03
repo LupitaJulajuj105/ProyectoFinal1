@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Estudiante
 from .forms import EstudianteForm
 
+
 # Listado
 def lista(request):
     estudiantes = Estudiante.objects.all()
@@ -71,3 +72,6 @@ def eliminar_beneficiario(request, id):
             "beneficiario": estudiante  # usamos "beneficiario" para coincidir con el template
         }
     )
+def detalles_bene(request):
+    beneficiarios = Estudiante.objects.all()  # Trae todos los beneficiarios
+    return render(request, "beneficiarios/detalleBene.html", {"beneficiarios": beneficiarios})

@@ -15,22 +15,22 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      font-family: 'Arial', sans-serif; /* 👈 Cambiado a Arial */
+      font-family: 'Arial', sans-serif;
       background-color: #f8f9fa;
       color: #212529;
     }
 
     /* ===== ENCABEZADO AZUL ===== */
     header {
-      background: #003366; /* Azul elegante */
+      background: #003366;
       color: #ffffff;
       padding: 2rem 1rem 1rem;
       text-align: center;
-      border-bottom: 5px solid #f2c94c; /* Línea amarilla decorativa */
+      border-bottom: 5px solid #f2c94c;
     }
 
     .header-section h2 {
-      font-family: 'Arial', sans-serif; /* 👈 Arial en el título */
+      font-family: 'Arial', sans-serif;
       font-size: 2rem;
       margin-bottom: 0.5rem;
       font-weight: bold;
@@ -41,23 +41,21 @@
       font-size: 1rem;
       margin: 0;
       opacity: 0.9;
-      font-family: 'Arial', sans-serif; /* 👈 Arial en subtítulo */
+      font-family: 'Arial', sans-serif;
     }
 
-    /* ===== MENÚ PRINCIPAL ===== */
+    /* ===== MENÚ PRINCIPAL (YA NO ESTÁTICO) ===== */
     .pattern-bg {
-      background-color: #f2c94c; /* Amarillo */
+      background-color: #f2c94c;
       padding: 2rem 0 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1030;
+      /* ❌ Se elimina position: sticky y top */
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
 
     .icon-circle {
       width: 80px;
       height: 80px;
-      background-color: #003366; /* Azul */
+      background-color: #003366;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -70,7 +68,7 @@
     }
 
     .icon-circle:hover {
-      background-color: #001f4d; /* Azul más oscuro al pasar el mouse */
+      background-color: #001f4d;
       transform: scale(1.1) rotate(5deg);
     }
 
@@ -79,7 +77,7 @@
       font-weight: 600;
       color: #0b1a2f;
       font-size: 1rem;
-      font-family: 'Arial', sans-serif; /* 👈 Arial en los textos del menú */
+      font-family: 'Arial', sans-serif;
     }
 
     .dropdown-menu {
@@ -149,7 +147,7 @@
     </div>
   </header>
 
-  <!-- ===== MENÚ PRINCIPAL CON ÍCONOS ===== -->
+  <!-- ===== MENÚ PRINCIPAL CON ÍCONOS (YA NO ESTÁTICO) ===== -->
   <section class="pattern-bg">
     <div class="container">
       <div class="row text-center justify-content-center g-4">
@@ -160,12 +158,44 @@
           </a>
         </div>
 
-        <div class="col-6 col-sm-4 col-md-2">
-          <a href="{% url 'beneficiarios_list' %}" class="text-decoration-none">
-            <div class="icon-circle"><i class="bi bi-people"></i></div>
-            <div class="menu-item">Beneficiarios</div>
-          </a>
-        </div>
+    
+        <div class="col-6 col-sm-4 col-md-2 dropdown">
+    <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
+        <div class="icon-circle"><i class="bi bi-people"></i></div>
+        <div class="menu-item">Beneficiarios</div>
+    </a>
+    <ul class="dropdown-menu mt-2 p-2 shadow-sm rounded text-start">
+        <li>
+            <a class="dropdown-item" href="{% url 'beneficiarios_list' %}">
+                <i class="bi bi-list-ul me-2"></i>Lista de Beneficiarios
+            </a>
+        </li>
+          <li>
+              <a class="dropdown-item" href="{% url 'beneficiarios_detalleBene' %}">
+                <i class="bi bi-file-text me-2"></i>Detalles Beneficiarios
+            </a>
+          </li>
+       </ul>
+      </div>
+
+
+
+
+              <div class="col-6 col-sm-4 col-md-2 dropdown">
+        <a href="#" class="text-decoration-none " data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="icon-circle"><i class="bi bi-person-lines-fill"></i></div>
+            <div class="menu-item">Socioeconómicos</div>
+        </a>
+        <ul class="dropdown-menu mt-2 p-2 shadow-sm rounded text-start">
+            <li><a class="dropdown-item" href="{% url 'socioeconomico_list' %}">
+                <i class="bi bi-list-ul me-2"></i>Lista de Socioeconómicos
+            </a></li>
+            <li><a class="dropdown-item" href="{% url 'detalles_socioeconomico' %}">
+                <i class="bi bi-file-text me-2"></i>Detalles Socioeconómicos
+            </a></li>
+        </ul>
+      </div>
+
 
         <div class="col-6 col-sm-4 col-md-2 dropdown">
           <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
@@ -177,40 +207,26 @@
             <li><a class="dropdown-item" href="{% url 'becas_detallesBeca' %}"><i class="bi bi-file-text me-2"></i>Detalles de Beca</a></li>
           </ul>
         </div>
-        <div class="col-6 col-sm-4 col-md-2 dropdown">
-          <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="icon-circle"><i class="bi bi-award"></i></div>
-            <div class="menu-item">solicitud</div>
-          </a>
-          <ul class="dropdown-menu mt-2 p-2 shadow-sm rounded text-start">
-            <li><a class="dropdown-item" href="{% url 'solicitudes_list' %}"><i class="bi bi-list-ul me-2"></i>Lista de Solicitudes</a></li>
-            <li><a class="dropdown-item" href="{% url 'detalles_soli' %}"><i class="bi bi-file-text me-2"></i>Informacion de solicitud</a></li>
-          </ul>
-        </div>
 
         <div class="col-6 col-sm-4 col-md-2 dropdown">
           <a href="#" class="text-decoration-none" data-bs-toggle="dropdown" aria-expanded="false">
-            <div class="icon-circle"><i class="bi bi-search"></i></div>
-            <div class="menu-item">Consultas</div>
+            <div class="icon-circle"><i class="bi bi-journal-text"></i></div>
+            <div class="menu-item">Solicitud</div>
           </a>
           <ul class="dropdown-menu mt-2 p-2 shadow-sm rounded text-start">
-            <li><a class="dropdown-item" href="{% url 'consulta_datos_academicos' %}"><i class="bi bi-book me-2"></i>Académicos</a></li>
-            <li><a class="dropdown-item" href="{% url 'consulta_documentos' %}"><i class="bi bi-folder2-open me-2"></i>Documentos</a></li>
-            <li><a class="dropdown-item" href="{% url 'consulta_historial_becas' %}"><i class="bi bi-clock-history me-2"></i>Historial Becas</a></li>
-            <li><a class="dropdown-item" href="{% url 'consulta_historial_usuarios' %}"><i class="bi bi-person-lines-fill me-2"></i>Historial Usuarios</a></li>
-            <li><a class="dropdown-item" href="{% url 'consulta_socioeconomicos' %}"><i class="bi bi-people-fill me-2"></i>Socioeconómicos</a></li>
+            <li><a class="dropdown-item" href="{% url 'solicitudes_list' %}"><i class="bi bi-list-ul me-2"></i>Lista de Solicitudes</a></li>
+            <li><a class="dropdown-item" href="{% url 'detalles_soli' %}"><i class="bi bi-file-text me-2"></i>Información de Solicitud</a></li>
           </ul>
         </div>
 
         <div class="col-6 col-sm-4 col-md-2">
-        <a href="contactos.html" class="text-decoration-none">
-      <div class="icon-circle"><i class="bi bi-envelope"></i></div>
-      <div class="menu-item">Contacto</div>
-      </a>
+          <a href="{% url 'contactos' %}" class="text-decoration-none">
+            <div class="icon-circle"><i class="bi bi-envelope"></i></div>
+            <div class="menu-item">Contacto</div>
+          </a>
+        </div>
+      </div>
     </div>
-
-
-     
   </section>
 
   <!-- ===== CONTENIDO DINÁMICO ===== -->

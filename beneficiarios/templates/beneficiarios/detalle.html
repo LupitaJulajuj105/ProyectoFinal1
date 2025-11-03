@@ -2,49 +2,80 @@
 {% load static %}
 {% block content %}
 <div class="container mt-4">
-    <div class="card shadow-lg">
-        <div class="card-header bg-primary text-white">
-            <h2 class="mb-0"><i class="fa fa-user"></i> Detalle - {{ estudiante.nombre }} {{ estudiante.apellido }}</h2>
+    <div class="card shadow-lg" id="estudiante-card">
+        <div class="card-header bg-primary text-white text-center">
+            <h2 class="mb-0"><i class="fa fa-user"></i> Detalle del Estudiante</h2>
+            <h4 class="mt-1">{{ estudiante.nombre }} {{ estudiante.apellido }}</h4>
         </div>
         <div class="card-body">
-            <form>
-                <div class="mb-3 input-group">
-                    <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fa fa-id-card"></i> DPI</label>
                     <input type="text" class="form-control" value="{{ estudiante.DPI }}" readonly>
                 </div>
-
-                <div class="mb-3 input-group">
-                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fa fa-envelope"></i> Correo</label>
                     <input type="email" class="form-control" value="{{ estudiante.correo }}" readonly>
                 </div>
-
-                <div class="mb-3 input-group">
-                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fa fa-phone"></i> Teléfono</label>
                     <input type="text" class="form-control" value="{{ estudiante.telefono }}" readonly>
                 </div>
-
-                <div class="mb-3 input-group">
-                    <span class="input-group-text"><i class="fa fa-home"></i></span>
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fa fa-home"></i> Dirección</label>
                     <input type="text" class="form-control" value="{{ estudiante.direccion }}" readonly>
                 </div>
-
-                <div class="mb-3 input-group">
-                    <span class="input-group-text"><i class="fa fa-venus-mars"></i></span>
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fa fa-venus-mars"></i> Género</label>
                     <input type="text" class="form-control" value="{{ estudiante.get_genero_display }}" readonly>
                 </div>
-
-                <div class="mb-3 input-group">
-                    <span class="input-group-text"><i class="fa fa-check-circle"></i></span>
+                <div class="col-md-6">
+                    <label class="form-label"><i class="fa fa-check-circle"></i> Estado</label>
                     <input type="text" class="form-control" value="{{ estudiante.get_estado_display }}" readonly>
                 </div>
-            </form>
+            </div>
         </div>
-        <div class="card-footer text-end">
-            <a href="{% url 'beneficiarios_list' %}" class="btn btn-secondary">
+        <div class="card-footer text-center no-print">
+            <a href="{% url 'beneficiarios_list' %}" class="btn btn-secondary me-3">
                 <i class="fa fa-arrow-left"></i> Volver
             </a>
+            <button class="btn btn-warning" onclick="window.print()">
+                <i class="fa fa-file-pdf"></i> Imprimir PDF
+            </button>
         </div>
     </div>
 </div>
+
+<!-- CSS para impresión -->
+<style>
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #estudiante-card, #estudiante-card * {
+        visibility: visible;
+    }
+
+    #estudiante-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border: 1px solid #000;
+        padding: 20px;
+    }
+
+    /* Ocultar botones */
+    .no-print {
+        display: none;
+    }
+}
+</style>
+
+
+
+
 {% endblock %}
 

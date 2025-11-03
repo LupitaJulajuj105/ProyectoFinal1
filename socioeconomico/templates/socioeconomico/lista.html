@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .btn-green-gray {
+        background-color: #5c715e; 
+        color: white;
+        border: none;
+    }
+    .btn-green-gray:hover {
+        background-color: #4a5a4d;
+        color: #fff;
+    }
+
+    .btn-red {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+    }
+    .btn-red:hover {
+        background-color: #b52b38;
+        color: white;
+    }
+</style>
+
+<div class="container mt-4">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+            <h2 class="mb-0"><i class="fa fa-user"></i> Formulario Socioeconómico</h2>
+            <a class="btn btn-light text-success border border-success" href="{% url 'socioeconomico_create' %}">
+                <i class="fa fa-plus"></i> Nuevo Registro
+            </a>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped align-middle text-center">
+                    <thead class="table-success">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre Completo</th>
+                            <th>DPI</th>
+                            <th>Edad</th>
+                            <th>Teléfono</th>
+                            <th>Correo</th>
+                            <th>Dirección</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for s in socioeconomicos %}
+                        <tr>
+                            <td>{{ s.id }}</td>
+                            <td>{{ s.nombre_completo }}</td>
+                            <td>{{ s.dpi }}</td>
+                            <td>{{ s.edad }}</td>
+                            <td>{{ s.telefono }}</td>
+                            <td>{{ s.correo }}</td>
+                            <td>{{ s.direccion }}</td>
+                            <td>
+                                <a class="btn btn-sm btn-success" href="{% url 'socioeconomico_detail' s.id %}">
+                                    <i class="fa fa-eye"></i> Ver
+                                </a>
+                                <a class="btn btn-sm btn-green-gray" href="{% url 'socioeconomico_edit' s.id %}">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                                <a class="btn btn-sm btn-red" href="{% url 'socioeconomico_delete' s.id %}" 
+                                   onclick="return confirm('¿Estás seguro de que quieres eliminar este registro?');">
+                                    <i class="fa fa-trash"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-muted">No hay registros socioeconómicos</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

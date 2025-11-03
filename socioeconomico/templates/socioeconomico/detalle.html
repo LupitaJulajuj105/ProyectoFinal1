@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-lg" id="socio-card">
+        <div class="card-header bg-success text-white text-center">
+            <h2 class="mb-0"><i class="fa fa-user"></i> Detalle Socioeconómico</h2>
+            <h4 class="mt-1">{{ socioeconomico.nombre_completo }}</h4>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                    <input type="text" class="form-control" value="{{ socioeconomico.dpi }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    <input type="text" class="form-control" value="{{ socioeconomico.edad }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                    <input type="text" class="form-control" value="{{ socioeconomico.telefono }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                    <input type="text" class="form-control" value="{{ socioeconomico.correo }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-home"></i></span>
+                    <textarea class="form-control" rows="2" readonly>{{ socioeconomico.direccion }}</textarea>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                    <input type="text" class="form-control" value="{{ socioeconomico.ocupacion_padre }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-money-bill-wave"></i></span>
+                    <input type="text" class="form-control" value="Q {{ socioeconomico.ingreso_padre }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-briefcase"></i></span>
+                    <input type="text" class="form-control" value="{{ socioeconomico.ocupacion_madre }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-money-bill-wave"></i></span>
+                    <input type="text" class="form-control" value="Q {{ socioeconomico.ingreso_madre }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-users"></i></span>
+                    <input type="text" class="form-control" value="{{ socioeconomico.num_personas_hogar }}" readonly>
+                </div>
+
+                <div class="mb-3 input-group">
+                    <span class="input-group-text"><i class="fa fa-comment-dots"></i></span>
+                    <textarea class="form-control" rows="3" readonly>{{ socioeconomico.motivo_beca }}</textarea>
+                </div>
+            </form>
+        </div>
+
+        <div class="card-footer text-center no-print">
+            <a href="{% url 'socioeconomico_list' %}" class="btn btn-secondary me-3">
+                <i class="fa fa-arrow-left"></i> Volver
+            </a>
+            <button class="btn btn-warning" onclick="window.print()">
+                <i class="fa fa-file-pdf"></i> Imprimir PDF
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #socio-card, #socio-card * {
+        visibility: visible;
+    }
+
+    #socio-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border: 1px solid #000;
+        padding: 20px;
+    }
+
+    .no-print {
+        display: none;
+    }
+}
+</style>
+
+
+{% endblock %}

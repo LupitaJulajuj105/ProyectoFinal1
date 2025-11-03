@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-4">
-    <div class="card shadow-lg">
-        <div class="card-header bg-success text-white">
-            <h2 class="mb-0"><i class="fa fa-graduation-cap"></i> Detalle de la Beca - {{ beca.nombre }}</h2>
+    <div class="card shadow-lg printable-card" id="beca-card">
+        <div class="card-header bg-success text-white text-center">
+            <h2 class="mb-0"><i class="fa fa-graduation-cap"></i> Detalle de la Beca</h2>
+            <h4 class="mt-1">{{ beca.nombre }}</h4>
         </div>
         <div class="card-body">
             <form>
@@ -28,11 +29,78 @@
                 </div>
             </form>
         </div>
-        <div class="card-footer text-end">
-            <a href="{% url 'becas_list' %}" class="btn btn-secondary">
+
+        <div class="card-footer text-center no-print">
+            <a href="{% url 'becas_list' %}" class="btn btn-secondary me-3">
                 <i class="fa fa-arrow-left"></i> Volver
             </a>
+            <button class="btn btn-warning" onclick="window.print()">
+                <i class="fa fa-file-pdf"></i> Imprimir PDF
+            </button>
         </div>
     </div>
 </div>
+
+<style>
+/* Estilo similar a Beneficiarios */
+.printable-card {
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.printable-card .card-header {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.printable-card .card-footer {
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+.printable-card input, 
+.printable-card textarea {
+    border-radius: 6px;
+}
+
+.btn-warning {
+    background-color: #FFC107;
+    color: #000;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+/* Impresión solo de la ficha */
+@media print {
+    body * {
+        visibility: hidden;
+    }
+
+    #beca-card, #beca-card * {
+        visibility: visible;
+    }
+
+    #beca-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border: 1px solid #000;
+        padding: 20px;
+    }
+
+    .no-print {
+        display: none;
+    }
+}
+</style>
+
+
 {% endblock %}

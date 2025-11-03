@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.db import connection
 from datetime import datetime
 from .models import Historial  # Asegúrate de tener este modelo creado y registrado en settings.py
-
+from usuarios_ext.models import Historial
 
 # --- FUNCIONES AUXILIARES PARA CONSULTAS SQL ---
 def _fetchone(query, params=()):
@@ -101,7 +101,7 @@ def after_login(request):
     """Redirige al dashboard correspondiente según el rol del usuario."""
     rol = request.session.get('user_rol')
 
-    if rol == 'administrador':
+    if rol == 'administrativo':
         request.session['user_rol_css'] = '/static/css/roles/admin.css'
         return redirect('/dashboard/admin/')
     elif rol == 'comitiva':
@@ -110,3 +110,17 @@ def after_login(request):
     else:
         request.session['user_rol_css'] = '/static/css/roles/estudiante.css'
         return redirect('/dashboard/estudiante/')
+
+# --- CONSULTA HISTORIAL DE USUARIOS ---
+
+def consulta_historial_usuarios(request):
+    # Trae todos los registros de la tabla, ordenados por fecha descendente
+    resultados = Historial.objects.all().order_by('-fecha_hora')
+
+    contexto = {
+        'resultados': resultados,
+    }
+
+    return render(request, 'historialusuarios.html', contexto)
+
+

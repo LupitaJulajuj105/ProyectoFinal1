@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Socioeconómico - Becas Municipales de Guatemala</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #e8f0ff, #fffbe6);
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(90deg, #003366, #0055a5);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+      border-bottom: 6px solid #ffcc00;
+    }
+
+    header h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+
+    section {
+      padding: 60px 0;
+    }
+
+    .section-title {
+      color: #003366;
+      font-weight: 700;
+      margin-bottom: 30px;
+      border-left: 6px solid #ffcc00;
+      padding-left: 15px;
+    }
+
+    .info-block {
+      background: rgba(255,255,255,0.9);
+      border-left: 6px solid #003366;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 18px rgba(0,0,0,0.1);
+      transition: 0.3s ease;
+    }
+
+    .info-block:hover {
+      transform: translateY(-5px);
+      background: #ffffff;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .info-block h5 {
+      color: #003366;
+      font-weight: 600;
+    }
+
+    .info-block i {
+      color: #ffcc00;
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+      font-size: 0.9rem;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <h1>Formulario Socioeconómico</h1>
+    <p>Guía informativa sobre los datos requeridos para el estudio socioeconómico del becario</p>
+  </header>
+
+  <!-- Sección 1 -->
+  <section id="personales">
+    <div class="container">
+      <h3 class="section-title">Datos Personales del Solicitante</h3>
+
+      <div class="info-block">
+        <h5><i class="bi bi-person-vcard"></i> Información Básica</h5>
+        <ul>
+          <li>Nombre completo del solicitante</li>
+          <li>Fecha de nacimiento</li>
+          <li>Género</li>
+          <li>Dirección de residencia completa</li>
+          <li>Teléfono y correo electrónico de contacto</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h5><i class="bi bi-book"></i> Información Académica</h5>
+        <ul>
+          <li>Centro educativo al que asiste</li>
+          <li>Nivel o grado que cursa</li>
+          <li>Jornada y horario de estudio</li>
+          <li>Promedio general del último ciclo</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2 -->
+  <section id="familiares" style="background:#fefefe;">
+    <div class="container">
+      <h3 class="section-title">Datos Familiares</h3>
+
+      <div class="info-block">
+        <h5><i class="bi bi-people"></i> Información del Hogar</h5>
+        <ul>
+          <li>Nombre del padre, madre o encargado</li>
+          <li>Ocupación y lugar de trabajo</li>
+          <li>Estado civil de los padres</li>
+          <li>Número total de integrantes del hogar</li>
+          <li>Número de dependientes en edad escolar</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h5><i class="bi bi-house-heart"></i> Condiciones de Vivienda</h5>
+        <ul>
+          <li>Tipo de vivienda (propia, alquilada, prestada, etc.)</li>
+          <li>Material predominante en paredes, techo y piso</li>
+          <li>Disponibilidad de servicios básicos (agua, luz, internet, etc.)</li>
+          <li>Número de habitaciones y personas por habitación</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 3 -->
+  <section id="economica">
+    <div class="container">
+      <h3 class="section-title">Situación Económica</h3>
+
+      <div class="info-block">
+        <h5><i class="bi bi-cash-stack"></i> Ingresos del Hogar</h5>
+        <ul>
+          <li>Ingresos mensuales aproximados del hogar</li>
+          <li>Fuentes de ingreso (salario, trabajos temporales, remesas, etc.)</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h5><i class="bi bi-wallet2"></i> Egresos y Gastos</h5>
+        <ul>
+          <li>Gastos mensuales en alimentación, vivienda, transporte y educación</li>
+          <li>Deudas o compromisos económicos existentes</li>
+        </ul>
+      </div>
+
+      <div class="info-block">
+        <h5><i class="bi bi-chat-dots"></i> Observaciones</h5>
+        <p>En esta sección el solicitante puede detallar su situación económica, social o familiar de forma breve, explicando las razones por las cuales requiere el apoyo de la beca municipal.</p>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    ScrollReveal().reveal('.info-block', {
+      duration: 1000,
+      distance: '60px',
+      origin: 'bottom',
+      interval: 200,
+      reset: true
+    });
+  </script>
+</body>
+</html>
+{% endblock %}

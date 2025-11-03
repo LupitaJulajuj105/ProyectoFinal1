@@ -13,5 +13,6 @@ urlpatterns = [
     path('beneficiarios/', include('beneficiarios.urls')),
     path('becas/', include('becas.urls')),
     path('solicitudes/', include('solicitudes.urls')),
-    path('consultas/', include('consultas.urls')),
+    path('socioeconomico/', include('socioeconomico.urls')),
+   
 ]
