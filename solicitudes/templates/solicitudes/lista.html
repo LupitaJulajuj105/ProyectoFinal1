@@ -27,13 +27,38 @@
                         <td>{{ s.id_solicitud }}</td>
                         <td>{{ s.id_estudiante.nombre }} {{ s.id_estudiante.apellido }}</td>
                         <td>{{ s.id_beca.nombre }}</td>
-                        <td>{{ s.fecha_solicitud }}</td>
-                        <td>{{ s.estado }}</td>
+                        <td>{{ s.fecha_solicitud|date:"j \\d\\e F \\d\\e Y" }}</td>
                         <td>
-                            <a class="btn btn-sm btn-secondary" href="{% url 'solicitudes_detail' s.id_solicitud %}">
+                            {% if s.estado == "Aprobada" %}
+                                <span class="badge bg-success">Aprobada</span>
+                            {% elif s.estado == "Rechazada" %}
+                                <span class="badge bg-danger">Rechazada</span>
+                            {% elif s.estado == "En revisión" %}
+                                <span class="badge bg-warning text-dark">En revisión</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Pendiente</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <!-- Botón Ver -->
+                            <a class="btn btn-sm btn-secondary me-2" href="{% url 'solicitudes_detail' s.id_solicitud %}">
                                 <i class="fa fa-eye"></i> Ver
                             </a>
 
+                            <!-- Botón Editar -->
+                            <a class="btn btn-sm btn-primary me-2" href="{% url 'solicitudes_edit' s.id_solicitud %}">
+                                <i class="fa fa-edit"></i> Editar
+                            </a>
+
+                            <!-- Botón Eliminar -->
+                            <a class="btn btn-sm btn-danger me-2" href="{% url 'solicitudes_delete' s.id_solicitud %}"
+                               onclick="return confirm('¿Estás seguro de que deseas eliminar esta solicitud?');">
+                                <i class="fa fa-trash"></i> Eliminar
+                            </a>
+
+                            <!-- Botón Estado -->
+                            <a class="btn btn-sm btn-success" href="{% url 'estado_solicitud' s.id_solicitud %}">
+                                <i class="fa fa-flag"></i> Estado
                             </a>
                         </td>
                     </tr>
@@ -48,5 +73,6 @@
     </div>
 </div>
 {% endblock %}
+
 
 

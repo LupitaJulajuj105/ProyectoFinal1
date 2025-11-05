@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Solicitud
 from .forms import SolicitudForm
+from django.contrib import messages
 
 def lista(request):
     solicitudes = Solicitud.objects.select_related('estudiante','beca').all()
@@ -39,3 +40,16 @@ def solicitudes_detail(request, id):
 def detalles_soli(request):
     solicitudes = Solicitud.objects.all()
     return render(request, "solicitudes/SoliDetalle.html", {"solicitudes": solicitudes})
+
+def estado_solicitud(request, id_solicitud):
+    solicitud = get_object_or_404(Solicitud, id_solicitud=id_solicitud)
+    return render(request, 'solicitudes/solicitud1.html', {'solicitud': solicitud})
+
+
+def eliminar(request, id):
+    solicitud = get_object_or_404(Solicitud, id_solicitud=id)
+    if request.method == 'POST':
+        solicitud.delete()
+        messages.success(request, 'La solicitud ha sido eliminada correctamente.')
+        return redirect('solicitudes_list')
+    return render(request, 'solicitudes/solicitudes_confirm_delete.html', {'solicitud': solicitud})

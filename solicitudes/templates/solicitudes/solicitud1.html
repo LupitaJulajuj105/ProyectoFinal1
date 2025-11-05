@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-4">
+  <div class="card shadow-lg">
+    <div class="card-header bg-secondary text-white text-center">
+      <h3><i class="fa fa-flag"></i> Estado de tu solicitud</h3>
+      <small>ID de solicitud: {{ solicitud.id_solicitud }}</small>
+    </div>
+    <div class="card-body text-center">
+
+      <!-- Barra de progreso -->
+      <div class="progress" style="height: 30px; border-radius: 15px;">
+        {% if solicitud.estado == 'pendiente' %}
+          <div class="progress-bar bg-info" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            Pendiente
+          </div>
+        {% elif solicitud.estado == 'en revisión' %}
+          <div class="progress-bar bg-warning" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+            En revisión
+          </div>
+        {% elif solicitud.estado == 'aprobado' %}
+          <div class="progress-bar bg-success" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+            Aprobado
+          </div>
+        {% elif solicitud.estado == 'rechazado' %}
+          <div class="progress-bar bg-danger" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+            Rechazado
+          </div>
+        {% else %}
+          <div class="progress-bar bg-secondary" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+            Estado desconocido
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Texto descriptivo -->
+      <div class="mt-4">
+        {% if solicitud.estado == 'pendiente' %}
+          <p><i class="fa fa-info-circle"></i> Tu solicitud aún no ha sido procesada.</p>
+        {% elif solicitud.estado == 'en revisión' %}
+          <p><i class="fa fa-search"></i> Tu solicitud está siendo revisada.</p>
+        {% elif solicitud.estado == 'aprobado' %}
+          <p><i class="fa fa-check-circle"></i> ¡Felicidades! Tu solicitud ha sido aprobada.</p>
+        {% elif solicitud.estado == 'rechazado' %}
+          <p><i class="fa fa-times-circle"></i> Lo sentimos, tu solicitud fue rechazada.</p>
+        {% else %}
+          <p><i class="fa fa-question-circle"></i> El estado de tu solicitud es desconocido.</p>
+        {% endif %}
+      </div>
+
+      <!-- Observaciones -->
+      {% if solicitud.observaciones %}
+      <div class="alert alert-info mt-3" role="alert">
+        <i class="fa fa-comments"></i> <strong>Observaciones:</strong> {{ solicitud.observaciones }}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="card-footer text-center">
+      <a href="{% url 'solicitudes_list' %}" class="btn btn-secondary">
+        <i class="fa fa-arrow-left"></i> Volver a Mis Solicitudes
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+

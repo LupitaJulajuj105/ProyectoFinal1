@@ -2,7 +2,6 @@
 {% load static %}
 {% block content %}
 <style>
- 
   .bg-azul-oscuro {
     background-color: #0b1a2f !important;
   }
@@ -10,65 +9,64 @@
     background-color: #0b1a2f !important;
     color: #cbd5e1;
   }
+  .ficha-beneficiario {
+    background-color: #f8f9fa;
+    border-left: 5px solid #0b1a2f;
+    transition: transform 0.2s;
+  }
+  .ficha-beneficiario:hover {
+    transform: scale(1.02);
+  }
+  .badge-dpi {
+    background-color: #0b1a2f;
+  }
 </style>
 
 <div class="container mt-4">
-    <div class="card shadow-lg">
-        <div class="card-header bg-azul-oscuro text-white d-flex justify-content-between align-items-center">
-            <h2 class="mb-0"><i class="fa fa-users"></i> Beneficiarios</h2>
-            <div>
-                <a class="btn btn-secondary me-2" href="{% url 'beneficiarios_create' %}">
-                    <i class="fa fa-plus"></i> Nuevo Beneficiario
-                </a>
-                <a class="btn btn-secondary" href="{% url 'buscar_eliminar_beneficiario' %}">
-                    <i class="fa fa-trash"></i> Eliminar Beneficiario
-                </a>
+
+    <!-- Listado de beneficiarios en fichas -->
+    <div class="row mb-4">
+        {% for e in estudiantes %}
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow ficha-beneficiario h-100">
+                <div class="card-header bg-azul-oscuro text-white d-flex justify-content-between align-items-center">
+                    <strong>ID: {{ e.id_estudiante }}</strong>
+                    <span class="badge badge-dpi">{{ e.DPI }}</span>
+                </div>
+                <div class="card-body">
+                    <p><i class="fa fa-user"></i> <strong>Nombre:</strong> {{ e.nombre }} {{ e.apellido }}</p>
+                </div>
+                <div class="card-footer d-flex justify-content-around flex-wrap">
+                    <a class="btn btn-sm btn-secondary mb-1" href="{% url 'beneficiarios_detail' e.id_estudiante %}">
+                        <i class="fa fa-eye"></i> Ver
+                    </a>
+                    <a class="btn btn-sm btn-primary mb-1" href="{% url 'beneficiarios_edit' e.id_estudiante %}">
+                        <i class="fa fa-edit"></i> Editar
+                    </a>
+                    <a class="btn btn-sm btn-danger mb-1" href="{% url 'eliminar_beneficiario' e.id_estudiante %}">
+                        <i class="fa fa-trash"></i> Eliminar
+                    </a>
+                </div>
             </div>
         </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-striped align-middle text-center table-azul-oscuro">
-                    <thead>
-                        <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">DPI</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {% for e in estudiantes %}
-                            <tr>
-                                <td>{{ e.id_estudiante }}</td>
-                                <td>{{ e.DPI }}</td>
-                                <td>{{ e.nombre }}</td>
-                                <td>{{ e.apellido }}</td>
-                                <td>{{ e.estado }}</td>
-                                <td>
-                                    <a class="btn btn-sm btn-secondary" href="{% url 'beneficiarios_detail' e.id_estudiante %}">
-                                        <i class="fa fa-eye"></i> Ver
-                                    </a>
-                                    <a class="btn btn-sm btn-secondary" href="{% url 'beneficiarios_edit' e.id_estudiante %}">
-                                        <i class="fa fa-edit"></i> Editar
-                                    </a>
-                                    <a class="btn btn-sm btn-secondary" href="{% url 'eliminar_beneficiario' e.id_estudiante %}">
-                                        <i class="fa fa-trash"></i> Eliminar
-                                    </a>
-                                </td>
-                            </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="6" class="text-muted">No hay beneficiarios registrados</td>
-                            </tr>
-                        {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">No hay beneficiarios registrados</div>
         </div>
+        {% endfor %}
+    </div>
+
+    <!-- Botones superiores para crear o eliminar beneficiario -->
+    <div class="d-flex justify-content-end mb-4">
+        <a class="btn btn-secondary me-2" href="{% url 'beneficiarios_create' %}">
+            <i class="fa fa-plus"></i> Nuevo Beneficiario
+        </a>
+        <a class="btn btn-secondary" href="{% url 'buscar_eliminar_beneficiario' %}">
+            <i class="fa fa-trash"></i> Eliminar Beneficiario
+        </a>
     </div>
 </div>
 {% endblock %}
+
 
 
